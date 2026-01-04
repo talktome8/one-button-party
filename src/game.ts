@@ -79,6 +79,14 @@ export class Game {
     }
   }
   
+  // Public method for touch input from UI
+  handleTouchInput(playerId: number): void {
+    this.handleInput({
+      playerId,
+      timestamp: performance.now(),
+    });
+  }
+  
   start(): void {
     this.lastTime = performance.now();
     this.gameLoop();
@@ -233,13 +241,13 @@ export class Game {
     if (blink) {
       ctx.fillStyle = '#ffe66d';
       ctx.font = 'bold 32px Segoe UI';
-      ctx.fillText('PRESS ANY KEY TO START', CANVAS_WIDTH / 2, 350);
+      ctx.fillText('TAP OR PRESS ANY KEY', CANVAS_WIDTH / 2, 350);
     }
     
     // Quick controls overview
     ctx.fillStyle = '#888888';
     ctx.font = '18px Segoe UI';
-    ctx.fillText('🎮 Keyboard or Gamepad supported', CANVAS_WIDTH / 2, 450);
+    ctx.fillText('🎮 Keyboard, Gamepad, or Touch supported', CANVAS_WIDTH / 2, 450);
     
     // Gamepad detection
     if (this.detectedGamepads.size > 0) {
@@ -265,8 +273,8 @@ export class Game {
     
     // Mode options
     const modes = [
-      { key: 'A / SPACE', label: 'PARTY MODE', desc: '2-4 players compete', icon: '🎉' },
-      { key: 'ENTER / →', label: 'SOLO TRAINING', desc: 'Practice your timing', icon: '🎯' },
+      { key: 'P1 / TAP LEFT', label: 'PARTY MODE', desc: '2-4 players compete', icon: '🎉' },
+      { key: 'P2 / TAP RIGHT', label: 'SOLO TRAINING', desc: 'Practice your timing', icon: '🎯' },
     ];
     
     modes.forEach((mode, i) => {
@@ -318,7 +326,7 @@ export class Game {
     // Instructions
     ctx.fillStyle = '#ffffff';
     ctx.font = '20px Segoe UI';
-    ctx.fillText('Press your button to join. Need at least 2 players to start.', CANVAS_WIDTH / 2, 120);
+    ctx.fillText('Tap your button or press your key to join. Need 2+ players.', CANVAS_WIDTH / 2, 120);
     
     // Player slots
     const slotWidth = 250;
