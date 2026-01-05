@@ -326,7 +326,7 @@ export class Game {
     // Instructions
     ctx.fillStyle = '#ffffff';
     ctx.font = '20px Segoe UI';
-    ctx.fillText('Tap your button or press your key to join. Need 2+ players.', CANVAS_WIDTH / 2, 120);
+    ctx.fillText('Tap your button or press your key to join. Need 1+ players.', CANVAS_WIDTH / 2, 120);
     
     // Player slots
     const slotWidth = 250;
@@ -405,7 +405,7 @@ export class Game {
     }
     
     // Start hint
-    if (this.joinedPlayers.size >= 2) {
+    if (this.joinedPlayers.size >= 1) {
       const blink = Math.sin(this.blinkTimer * 4) > 0;
       if (blink) {
         ctx.fillStyle = '#ffe66d';
@@ -415,7 +415,7 @@ export class Game {
     } else {
       ctx.fillStyle = '#ff6b6b';
       ctx.font = '18px Segoe UI';
-      ctx.fillText(`Need ${2 - this.joinedPlayers.size} more player(s) to start`, CANVAS_WIDTH / 2, 550);
+      ctx.fillText(`Need ${1 - this.joinedPlayers.size} more player(s) to start`, CANVAS_WIDTH / 2, 550);
     }
     
     // Control reference
@@ -830,7 +830,7 @@ export class Game {
       case 'player-select':
         if (this.joinedPlayers.has(action.playerId)) {
           // Already joined - check if we can start
-          if (this.joinedPlayers.size >= 2) {
+          if (this.joinedPlayers.size >= 1) {
             this.startGame();
           }
         } else {

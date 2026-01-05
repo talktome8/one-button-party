@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('  1. Press any key/tap on the title screen');
   console.log('  2. Choose Party Mode or Solo Training');
   console.log('  3. In Party Mode: each player presses their button to join');
-  console.log('  4. Press again when ready to start (need 2+ players)');
+  console.log('  4. Press again when ready to start (need 1+ players)');
   console.log('');
   console.log('=== GAME GOAL ===');
   console.log('  Lock your marker inside the target zone!');
